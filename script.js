@@ -4,22 +4,92 @@ let products = [
         id: 1,
         name: "Kopi Hitam",
         price: 5000,
-        image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ..."
+        image: "image/kopi.jpg"
     },
-    { id: 2, name: "Teh Hangat", price: 4000 },
-    { id: 3, name: "Roti Bakar", price: 6000 },
-    { id: 4, name: "Nasi Goreng", price: 15000 },
-    { id: 5, name: "Mie Goreng", price: 12000 },
-    { id: 6, name: "Air Mineral", price: 3000 },
-    { id: 7, name: "Mie Ayam", price: 10000 },
-    { id: 8, name: "Bakso Mercon", price: 15000 },
-    { id: 9, name: "Bakso Jumbo", price: 17000 },
-    { id: 10, name: "Es Campur", price: 6000 },
-    { id: 11, name: "Es Teh", price: 4000 },
-    { id: 12, name: "Nasi Pecel", price: 7000 },
-    { id: 13, name: "Gado-Gado", price: 10000 },
-    { id: 14, name: "Rujak Cingur", price: 10000 },
-    { id: 15, name: "Ayam Bakar", price: 20000 }
+    {  
+        id: 2, 
+        name: "Teh Hangat", 
+        price: 4000,
+        image: "image/tehhangat.jpg"
+    },
+    { 
+        id: 3, 
+        name: "Roti Bakar", 
+        price: 6000,
+        image: "image/rotibakar.jpg"
+    },
+    { 
+        id: 4, 
+        name: "Nasi Goreng", 
+        price: 15000,
+        image: "image/nasi-goreng.jpg"
+    },
+    { 
+        id: 5, 
+        name: "Mie Goreng", 
+        price: 12000,
+        image: "image/mie-goreng-saus-tiram.jpg"
+    },
+    { 
+        id: 6, 
+        name: "Air Mineral", 
+        price: 3000,
+        image: "image/airmineral.jpg"
+    },
+    { 
+        id: 7, 
+        name: "Mie Ayam", 
+        price: 10000,
+        image: "image/mieayam.jpeg"
+    },
+    { 
+        id: 8, 
+        name: "Bakso Mercon", 
+        price: 15000,
+        image: "image/baksomercon.jpeg"
+    },
+    { 
+        id: 9, 
+        name: "Bakso Jumbo", 
+        price: 17000,
+        image: "image/baksojumbo.jpeg"
+    },
+    { 
+        id: 10, 
+        name: "Es Campur", 
+        price: 6000,
+        image: "image/es-campur.jpg"
+    },
+    { 
+        id: 11, 
+        name: "Es Teh", 
+        price: 4000,
+        image: "image/esteh.jpeg"
+    },
+    { 
+        id: 12, 
+        name: "Nasi Pecel", 
+        price: 7000,
+        image: "image/pecel.jpeg"
+    },
+    { 
+        id: 13, 
+        name: "Gado-Gado", 
+        price: 10000,
+        image: "image/gado.jpeg"
+    },
+    { 
+        id: 14, 
+        name: "Rujak Cingur", 
+        price: 10000,
+        image: "image/rujakcingur.jpg"
+    },
+    { 
+        id: 15, 
+        name: "Ayam Bakar", 
+        price: 20000,
+        image: "image/ayam-bakar.jpg"
+    }
 ];
 
 let cart = [];
