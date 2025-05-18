@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warung Spesial Ibu</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="app-container">
+      <header>
+        <h1><i class="fas fa-cash-register"></i> Warung Spesial Ibu</h1>
+        <div class="header-actions">
+          <button id="view-transactions">
+            <i class="fas fa-history"></i> Riwayat
+          </button>
+          <button id="manage-products">
+            <i class="fas fa-boxes"></i> Kelola Produk
+          </button>
+          <button id="view-reports">
+            <i class="fas fa-chart-line"></i> Laporan
+          </button>
+        </div>
+      </header>
+
+      <div class="main-content">
+        <!-- Panel Produk -->
+        <div class="product-panel">
+          <div class="search-bar">
+            <input
+              type="text"
+              id="product-search"
+              placeholder="Cari produk..."
+            />
+            <button><i class="fas fa-search"></i></button>
+          </div>
+          <div class="product-grid" id="product-grid"></div>
+        </div>
+
+        <!-- Panel Transaksi -->
+        <div class="transaction-panel">
+          <div class="customer-info">
+            <input
+              type="text"
+              id="customer-name"
+              placeholder="Nama Pelanggan"
+            />
+            <input
+              type="text"
+              id="customer-phone"
+              placeholder="No. HP (opsional)"
+            />
+          </div>
+
+          <div class="cart-items" id="cart-items"></div>
+
+          <div class="transaction-summary">
+            <div class="summary-row">
+              <span>Subtotal:</span>
+              <span id="subtotal">Rp 0</span>
+            </div>
+            <div class="summary-row">
+              <span>Diskon:</span>
+              <input type="number" id="discount" value="0" min="0" />
+            </div>
+            <div class="summary-row">
+              <span>Total:</span>
+              <span id="total">Rp 0</span>
+            </div>
+            <div class="summary-row">
+              <span>Bayar:</span>
+              <input type="number" id="payment" min="0" />
+            </div>
+            <div class="summary-row highlight">
+              <span>Kembalian:</span>
+              <span id="change">Rp 0</span>
+            </div>
+
+            <div class="action-buttons">
+              <button id="clear-cart">
+                <i class="fas fa-trash"></i> Kosongkan
+              </button>
+              <button id="checkout" class="primary">
+                <i class="fas fa-check"></i> Selesaikan Transaksi
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Struk -->
+    <div class="modal" id="receipt-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Struk Pembayaran</h2>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body" id="receipt-content"></div>
+        <div class="modal-footer">
+          <button id="print-receipt"><i class="fas fa-print"></i> Cetak</button>
+          <button id="close-receipt">Tutup</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Riwayat -->
+    <div class="modal" id="history-modal">
+      <div class="modal-content large">
+        <div class="modal-header">
+          <h2>Riwayat Transaksi</h2>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <table id="transaction-history">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Waktu</th>
+                <th>Pelanggan</th>
+                <th>Total</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Produk -->
+    <div class="modal" id="product-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Kelola Produk</h2>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="product-form">
+            <input type="hidden" id="product-id" />
+            <div class="form-group">
+              <label for="product-image">Gambar Produk</label>
+              <input type="file" id="product-image" accept="image/*" />
+              <div class="image-preview" id="image-preview"></div>
+            </div>
+            <div class="form-group">
+              <label for="product-name">Nama Produk</label>
+              <input type="text" id="product-name" required />
+            </div>
+            <div class="form-group">
+              <label for="product-price">Harga</label>
+              <input type="number" id="product-price" min="1" required />
+            </div>
+            <div class="form-buttons">
+              <button type="submit" class="primary">Simpan</button>
+              <button type="button" id="cancel-product">Batal</button>
+            </div>
+          </form>
+
+          <div class="product-list">
+            <h3>Daftar Produk</h3>
+            <table id="product-table">
+              <thead>
+                <tr>
+                  <th>Nama</th>
+                  <th>Harga</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="report-modal">
+      <div class="modal-content large">
+        <div class="modal-header">
+          <h2>Laporan Penghasilan</h2>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="report-filters">
+            <select id="report-type">
+              <option value="daily">Harian</option>
+              <option value="monthly">Bulanan</option>
+            </select>
+            <input type="date" id="report-date" for-daily="true" />
+            <input
+              type="month"
+              id="report-month"
+              for-monthly="true"
+              style="display: none"
+            />
+            <button id="generate-report">
+              <i class="fas fa-chart-bar"></i> Generate
+            </button>
+          </div>
+          <div class="report-result" id="report-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
